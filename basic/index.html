@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Bugpilot - Code installation example 1</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+
+  <script>
+    // Optional: Enable debug mode to see the Bugpilot console logs
+    localStorage.setItem('Bugpilot::debug', 'yes');
+  </script>
+</head>
+
+<body>
+
+  <!-- Example app code -->
+  <div id="root"
+    style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%">
+    <h1>Check the source code :)</h1>
+    <img
+      src="https://imagedelivery.net/55PXnfNaLA7qnpEnq-80ug/dc39768c-e145-4d7d-7fea-ae97ffe25400/format=webp,width=500"
+      style="width: 300px" />
+  </div>
+
+  <!-- Example logic to get your user's id and email,
+       you will probably need to fetch this from the server -->
+  <script>
+    const user_id = 'demo-' + Math.random();
+    const email = user_id + '@example.com';
+  </script>
+
+  <!-- Optional: If you use an help desk software such as Intercom,
+       initialize it with the same user id and email properties  -->
+  <script>
+    window.intercomSettings = {
+      api_base: "https://api-iam.intercom.io",
+      app_id: "mbby1uij",
+      user_id: user_id,
+      email: email,
+    };
+  </script>
+
+  <!-- Required: load the Bugpilot code
+       This code is customized for your workspace, you can obtain it from the
+       setup tab in your Bugpilot dashboard -->
+  <script src="https://script.bugpilot.io/71e2aba3-108e-43dd-8459-6b462dc01253/adopto.js" 
+    async defer 
+    fetchpriority="low" 
+    referrerpolicy="origin"></script>
+
+  <!-- Required: initialize Bugpilot
+       Get the snippet from your Bugpilot dashboard. It is required to pass at least
+       an id and an email property. You should place this code next to where you
+       initialize other libraries, such as Segment, Mixpanel, etc. -->
+  <script>
+    (function (params) { function bugpilotReady() { window.Bugpilot.identify(params); } if (document.readyState == "loading") { document.addEventListener('DOMContentLoaded', bugpilotReady); } else { bugpilotReady(); } })({
+      id: user_id, // Required
+      email: email, // Required for help desk integrations
+
+      // Optional properties
+      firstName: "John", 
+      lastName: "Doe",
+      subscriptionStatus: 'active', // one of: 'active', 'trialing', 'deleted'
+      // ...any other attributes you want to see in the reports
+    });
+  </script>
+
+  <!-- Include any of your app scripts as usual -->
+  <script src="script.js"></script>
+</body>
+</html>

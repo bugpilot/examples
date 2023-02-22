@@ -1,0 +1,14 @@
+html, body, #root {
+  font-family: Monospace;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+input, button {
+  border: 3px solid lightgray;
+  margin-bottom: 2px;
+  padding: 5px;
+  border-radius: 5px;
+}
